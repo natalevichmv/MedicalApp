@@ -23,6 +23,6 @@ class LoginWindow(tkinter.Toplevel):
             ('User name', 'str'),
             ('Password', 'hidden_str')
         )
-        DataForm(self, data, 'Login', do_login, 0)
+        DataForm(self, data, 'Login', do_login)
 
         tkinter_common.center_window(self)

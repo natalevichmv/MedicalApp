@@ -2,7 +2,7 @@ import tkinter
 
 
 class DataForm():
-    def __init__(self, parent, data, action_name, callback, start_row=1):
+    def __init__(self, parent, data, action_name, callback, start_row=0):
         widgets = {}
         for name, t in data:
             label = tkinter.Label(parent, text=name+':')
