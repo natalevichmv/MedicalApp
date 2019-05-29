@@ -2,7 +2,7 @@ import tkinter
 import tkinter.messagebox
 
 
-from interface.common.json_data_form import JsonDataForm
+from interface.common.data_form import DataForm
 from interface.common import tkinter_common
 from interface.main_menu import MainMenu
 
@@ -23,6 +23,6 @@ class LoginWindow(tkinter.Toplevel):
             ('User name', 'str'),
             ('Password', 'hidden_str')
         )
-        JsonDataForm(self, data, 'Login', do_login, 0)
+        DataForm(self, data, 'Login', do_login, 0)
 
         tkinter_common.center_window(self)
