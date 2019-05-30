@@ -1,4 +1,6 @@
+import re
 import tkinter
+import tkinter.messagebox
 
 
 class DataForm():
@@ -16,7 +18,11 @@ class DataForm():
         def command():
             res = {}
             for name, t in data:
-                res[name] = DataForm._get_data(widgets[name], t)
+                try:
+                    res[name] = DataForm._get_data(widgets[name], name, t)
+                except Exception as e:
+                    tkinter.messagebox.showerror('Error', str(e))
+                    return
             callback(res)
 
         action_button = tkinter.Button(parent, text=action_name, command=command)
@@ -27,14 +33,19 @@ class DataForm():
 
     @staticmethod
     def _create_widget(t, *args, **kwargs):
-        if t == 'str':
+        if t in ['str', 'astr', 'date']:
             return tkinter.Entry(*args, **kwargs)
         if t == 'hidden_str':
             return tkinter.Entry(show='*', *args, **kwargs)
-        raise Exception('Not implemented type in form')
+        raise Exception('Not implemented type {} in form'.format(t))
 
     @staticmethod
-    def _get_data(w, t):
-        if t in ['str', 'hidden_str']:
+    def _get_data(w, name, t):
+        if t in ['str', 'hidden_str', 'astr', 'date']:
+            res = w.get()
+            if t != 'astr' and not res:
+                raise Exception("Field '{}' not filled".format(name))
+            if t == 'date' and not re.fullmatch(r'\d{2}\.\d{2}\.\d{4}', res):
+                raise Exception("Field '{}' filled incorrectly: date should be in format DD.MM.YYYY".format(name))
             return w.get()
-        raise Exception('Not implemented type in form')
+        raise Exception('Not implemented type {} in form'.format(t))
