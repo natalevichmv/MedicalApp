@@ -34,7 +34,7 @@ class MainMenu(tkinter.Toplevel):
         def add_buttons(infos):
             i = 1
             for name, cls in infos:
-                def do_command():
+                def do_command(cls=cls):
                     cls(self.parent, self.controller)
                     self.destroy()
                 button = tkinter.Button(self, text=name, width=70, height=2, command=do_command)
