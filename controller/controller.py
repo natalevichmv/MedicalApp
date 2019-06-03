@@ -10,6 +10,7 @@ class Controller:
 
         from random import randint
         self._user_type = UserType(randint(1, 3))
+        self._user_type = UserType.CLERK
 
         return True
 
