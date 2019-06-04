@@ -7,7 +7,7 @@ from interface.common import tkinter_common
 
 
 class DataForm():
-    def __init__(self, parent, data, action_name, callback, start_row=0):
+    def __init__(self, parent, data, action_name, callback, start_row=0, term=False):
         widgets = {}
         for name, t in data:
             label = tkinter.Label(parent, text=name+':')
@@ -31,7 +31,7 @@ class DataForm():
         action_button = tkinter.Button(parent, text=action_name, command=command)
         action_button.grid(row=start_row, column=0, sticky='news')
 
-        exit_button = tkinter.Button(parent, text='Exit', command=parent.terminate)
+        exit_button = tkinter.Button(parent, text='Exit', command=(parent.terminate if term else parent.destroy))
         exit_button.grid(row=start_row, column=1, sticky='news')
 
     @staticmethod
@@ -65,7 +65,7 @@ class DataWindow(tkinter.Toplevel):
 
         def new_callback(data):
             callback(data)
-            self.terminate()
+            self.destroy()
 
         DataForm(self, data, action_name, new_callback, start_row)
 
