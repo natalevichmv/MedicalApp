@@ -17,7 +17,7 @@ class RegisterPatient(tkinter.Toplevel):
             except Exception as e:
                 tkinter.messagebox.showerror('Error', str(e))
             else:
-                tkinter.messagebox.showinfo('Info', 'User successfully registered')
+                tkinter.messagebox.showinfo('Info', 'Patient successfully registered')
             self.terminate()
 
         data = (
