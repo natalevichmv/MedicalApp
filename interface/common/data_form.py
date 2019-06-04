@@ -3,6 +3,9 @@ import tkinter
 import tkinter.messagebox
 
 
+from interface.common import tkinter_common
+
+
 class DataForm():
     def __init__(self, parent, data, action_name, callback, start_row=0):
         widgets = {}
@@ -53,3 +56,17 @@ class DataForm():
                 raise Exception('Invalid phone format')
             return w.get()
         raise Exception('Not implemented type {} in form'.format(t))
+
+
+class DataWindow(tkinter.Toplevel):
+    def __init__(self, parent, data, action_name, callback, start_row=0):
+        super().__init__(parent)
+        tkinter_common.default_init(self, parent, None)
+
+        def new_callback(data):
+            callback(data)
+            self.terminate()
+
+        DataForm(self, data, action_name, new_callback, start_row)
+
+        tkinter_common.center_window(self)

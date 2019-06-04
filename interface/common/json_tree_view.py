@@ -36,11 +36,11 @@ def fit(tree, item, cur=''):
 
 
 class JsonTreeView(tkinter.Toplevel):
-    def __init__(self, parent, data):
+    def __init__(self, parent, data, term=False):
         super().__init__(parent)
         tkinter_common.default_init(self, parent, None)
 
-        ok_button = tkinter.Button(self, text='OK', command=self.terminate)
+        ok_button = tkinter.Button(self, text='OK', command=(self.terminate if term else self.destroy))
         ok_button.grid(row=1, column=0, sticky='news')
 
         s = ttk.Style()

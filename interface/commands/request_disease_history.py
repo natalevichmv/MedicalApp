@@ -47,7 +47,7 @@ class RequestDiseaseHistory(tkinter.Toplevel):
                 name = lb.get(sel[0])
                 for patient in patients:
                     if patient.get('Name') == name:
-                        JsonTreeView(self.parent, patient)
+                        JsonTreeView(self.parent, patient, True)
                         self.destroy()
                         return
 
