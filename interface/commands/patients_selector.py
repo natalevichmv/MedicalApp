@@ -39,7 +39,7 @@ class PatientsSelector(tkinter.Toplevel):
             for patient in patients:
                 if not patient.get('Name'):
                     continue
-                if not patient['Name'].startswith(s):
+                if not s in patient['Name']:
                     continue
                 if self._only_present and patient.get('Diseases', [{}])[-1].get('Wrote out'):
                     continue
