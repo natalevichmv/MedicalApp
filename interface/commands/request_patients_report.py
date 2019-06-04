@@ -37,9 +37,12 @@ class RequestPatientsReport(tkinter.Toplevel):
             upper_bound = string_to_date(upper_sv.get())
             patients = []
             for patient in self.controller.get_patients_list():
-                date = string_to_date(patient['Birth date'])
-                if lower_bound <= date <= upper_bound:
-                    patients.append(patient)
+                try:
+                    date = string_to_date(patient['Diseases'][-1]['Receptions'][-1]['Date'])
+                    if lower_bound <= date <= upper_bound:
+                        patients.append(patient)
+                except:
+                    pass
             PatientsSelector(self, self.controller, None, None, None,
                              only_present=False, show_list=patients)
 
