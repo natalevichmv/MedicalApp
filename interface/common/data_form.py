@@ -6,7 +6,7 @@ import tkinter.messagebox
 from interface.common import tkinter_common
 
 
-class DataForm():
+class DataForm:
     def __init__(self, parent, data, action_name, callback, start_row=0, term=False):
         widgets = {}
         for name, t in data:

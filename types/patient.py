@@ -1,4 +1,4 @@
-class Patient():
+class Patient:
     def __init__(self, name, info):
         self._name = name
         self._info = info

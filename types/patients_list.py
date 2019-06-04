@@ -1,4 +1,4 @@
-class PatientsList():
+class PatientsList:
     def __init__(self, patients):
         self._patients = patients
 

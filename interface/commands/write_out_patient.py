@@ -1,9 +1,6 @@
 import tkinter
 
 
-from interface.common import tkinter_common
-from interface.common.json_tree_view import JsonTreeView
-from interface.common.data_form import DataWindow
 from interface.commands.patients_selector import PatientsSelector
 
 
@@ -15,7 +12,7 @@ class WriteOutPatient:
             ('Verdict', 'str')
         )
 
-        def callback(data):
+        def callback(patient, data):
             pass
 
-        PatientsSelector(parent, controller, data, callback)
+        PatientsSelector(parent, controller, data, 'Write Out Patient', callback)

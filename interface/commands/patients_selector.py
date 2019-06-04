@@ -7,12 +7,13 @@ from interface.common.data_form import DataWindow
 
 
 class PatientsSelector(tkinter.Toplevel):
-    def __init__(self, parent, controller, data, callback):
+    def __init__(self, parent, controller, data, action_name, callback):
         super().__init__(parent)
         tkinter_common.default_init(self, parent, controller)
 
         self._data = data
         self._callback = callback
+        self._action_name = action_name
         self._init_list()
 
         tkinter_common.center_window(self)
@@ -50,7 +51,8 @@ class PatientsSelector(tkinter.Toplevel):
                 name = lb.get(sel[0])
                 for patient in patients:
                     if patient.get('Name') == name:
-                        DataWindow(self.parent, self._data, 'Write Out Patient', self._callback)
+                        if self._data:
+                            DataWindow(self.parent, self._data, self._action_name, lambda data: self._callback(patient, data))
                         JsonTreeView(self.parent, patient)
                         self.destroy()
                         return
