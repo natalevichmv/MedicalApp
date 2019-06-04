@@ -35,8 +35,7 @@ class MainMenu(tkinter.Toplevel):
             i = 1
             for name, cls in infos:
                 def do_command(cls=cls):
-                    cls(self.parent, self.controller)
-                    self.destroy()
+                    cls(self, self.controller)
                 button = tkinter.Button(self, text=name, width=70, height=2, command=do_command)
                 button.grid(row=i, column=0, sticky = tkinter.W)
                 i += 1

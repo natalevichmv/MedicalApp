@@ -48,13 +48,13 @@ class WriteOutPatient(tkinter.Toplevel):
                 name = lb.get(sel[0])
                 for patient in patients:
                     if patient.get('Name') == name:
-                        JsonTreeView(self.parent, patient)
                         data = (
                             ('Doctor Type', 'str'),
                             ('Date', 'date'),
                             ('Verdict', 'str')
                         )
                         DataWindow(self.parent, data, 'Write Out Patient', lambda x: None)
+                        JsonTreeView(self.parent, patient)
                         self.destroy()
                         return
 
