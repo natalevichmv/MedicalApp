@@ -50,7 +50,7 @@ class DataForm():
                 raise Exception("Field '{}' not filled".format(name))
             if t == 'date' and not re.fullmatch(r'\d{2}\.\d{2}\.\d{4}', res):
                 raise Exception("Field '{}' filled incorrectly: date should be in format DD.MM.YYYY".format(name))
-            if t == 'blood' and not res in ('1', '2', '3', '4', 'I', 'II', 'III', 'IV', '', 'A', 'B', 'AB'):
+            if t == 'blood' and not res in ('1', '2', '3', '4', 'I', 'II', 'III', 'IV', '0', 'A', 'B', 'AB'):
                 raise Exception('Invalid blood group')
             if t == 'phone' and not re.fullmatch(r'\+?[0-9\-()]+', res):
                 raise Exception('Invalid phone format')
