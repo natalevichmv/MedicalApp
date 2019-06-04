@@ -16,8 +16,8 @@ class PrescribeTreatment:
             if not 'Diseases' in patient:
                 patient['Diseases'] = [{}]
             if not 'Treatments' in patient['Diseases'][-1]:
-            	patient['Diseases'][-1]['Treatments'] = []
+                patient['Diseases'][-1]['Treatments'] = []
             patient['Diseases'][-1]['Treatments'].append(data)
             controller.update_patient(patient)
 
-        PatientsSelector(parent, controller, data, 'Prescribe treatment', callback)
+        PatientsSelector(parent, controller, data, 'Prescribe Treatment', callback)

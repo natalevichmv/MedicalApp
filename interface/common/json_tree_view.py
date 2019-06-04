@@ -25,6 +25,8 @@ def fit(tree, item, cur=''):
     if type(item) == list:
         for i, v in enumerate(item):
             width[0] = max(width[0], len(str(i)))
+            if not v:
+                continue
             fit(tree, v, tree.insert(cur, 'end', text=str(i), open='yes'))
     elif type(item) == dict:
         for k, v in sorted(item.items(), key=lambda x: imp.get(x[0], '99')+imp.get(type(x[1]), '99')+x[0]):
