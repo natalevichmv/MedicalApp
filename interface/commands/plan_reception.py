@@ -15,4 +15,4 @@ class PlanReception:
         def callback(patient, data):
             pass
 
-        PatientsSelector(parent, controller, data, 'Plan Reception', callback)
+        PatientsSelector(parent, controller, data, 'Plan Reception', callback, False)

@@ -13,6 +13,9 @@ class WriteOutPatient:
         )
 
         def callback(patient, data):
-            pass
+            if not 'Diseases' in patient:
+                patient['Diseases'] = [{}]
+            patient['Diseases'][-1]['Wrote out'] = data
+            controller.update_patient(patient)
 
         PatientsSelector(parent, controller, data, 'Write Out Patient', callback)

@@ -59,9 +59,9 @@ class Controller:
     def get_patients_list(self):
         return self._patients
 
-    def update_patient(data):
+    def update_patient(self, data):
         for i, patient in enumerate(self._patients):
-            if patient['Name'] == name['Name']:
+            if patient['Name'] == data['Name']:
                 self._patients[i] = data
                 self._save_patients()
                 return True

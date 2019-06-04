@@ -47,8 +47,8 @@ class JsonTreeView(tkinter.Toplevel):
         s.configure('MyStyle.Treeview', rowheight=30)
         tree = ttk.Treeview(self, selectmode='none', columns=('Value',), show='tree', height=20, style='MyStyle.Treeview')
         fit(tree, data)
-        tree.column('#0', width=width[0] * 15 + 5)
-        tree.column('#1', width=width[1] * 15)
+        tree.column('#0', width=width[0] * 20 + 10)
+        tree.column('#1', width=width[1] * 20)
         tree.grid(row=0, column=0, sticky='news')
 
         tkinter_common.center_window(self)
