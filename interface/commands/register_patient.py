@@ -22,8 +22,10 @@ class RegisterPatient(tkinter.Toplevel):
 
         data = (
             ('Name', 'str'),
-            ('Address', 'str'),
             ('Birth date', 'date'),
+            ('Address', 'str'),
+            ('Phone number', 'phone'),
+            ('Blood group', 'blood'),
             ('Other', 'astr')
         )
         DataForm(self, data, 'Register Patient', do_register_patient)

@@ -26,14 +26,14 @@ class DataForm():
             callback(res)
 
         action_button = tkinter.Button(parent, text=action_name, command=command)
-        action_button.grid(row=start_row, column=0, sticky=tkinter.W)
+        action_button.grid(row=start_row, column=0, sticky='news')
 
         exit_button = tkinter.Button(parent, text='Exit', command=parent.terminate)
-        exit_button.grid(row=start_row, column=1, sticky=tkinter.E)
+        exit_button.grid(row=start_row, column=1, sticky='news')
 
     @staticmethod
     def _create_widget(t, *args, **kwargs):
-        if t in ['str', 'astr', 'date']:
+        if t in ['str', 'astr', 'date', 'phone', 'blood']:
             return tkinter.Entry(*args, **kwargs)
         if t == 'hidden_str':
             return tkinter.Entry(show='*', *args, **kwargs)
@@ -41,11 +41,15 @@ class DataForm():
 
     @staticmethod
     def _get_data(w, name, t):
-        if t in ['str', 'hidden_str', 'astr', 'date']:
+        if t in ['str', 'hidden_str', 'astr', 'date', 'phone', 'blood']:
             res = w.get()
             if t != 'astr' and not res:
                 raise Exception("Field '{}' not filled".format(name))
             if t == 'date' and not re.fullmatch(r'\d{2}\.\d{2}\.\d{4}', res):
                 raise Exception("Field '{}' filled incorrectly: date should be in format DD.MM.YYYY".format(name))
+            if t == 'blood' and not res in ('1', '2', '3', '4', 'I', 'II', 'III', 'IV', ''):
+                raise Exception('Invalid blood group')
+            if t == 'phone' and not re.fullmatch(r'\+?[0-9\-()]+', res):
+                raise Exception('Invalid phone format')
             return w.get()
         raise Exception('Not implemented type {} in form'.format(t))
