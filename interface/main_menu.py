@@ -46,7 +46,7 @@ class MainMenu(tkinter.Toplevel):
         def add_clerk_buttons():
             add_buttons((
                 ('Register Patient', RegisterPatient),
-                ('Register Treatment Course', RegisterTreatmentCourse)
+                #('Register Treatment Course', RegisterTreatmentCourse)
             ))
 
         def add_authority_buttons():
