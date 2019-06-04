@@ -6,6 +6,17 @@ from interface.common import tkinter_common
 
 
 width = [0, 0]
+imp = {
+    str: '00',
+    dict: '01',
+    list: '02',
+    'Name': '00',
+    'Birth date': '01',
+    'Address': '02',
+    'Phone number': '03',
+    'Blood group': '04',
+    'Other': '10'
+}
 
 
 def fit(tree, item, cur=''):
@@ -14,7 +25,7 @@ def fit(tree, item, cur=''):
             width[0] = max(width[0], len(str(i)))
             fit(tree, v, tree.insert(cur, 'end', text=str(i), open='yes'))
     elif type(item) == dict:
-        for k, v in sorted(item.items()):
+        for k, v in sorted(item.items(), key=lambda x: imp.get(type(x[1]), '99')+imp.get(x[0], '99')+x[0]):
             width[0] = max(width[0], len(k))
             fit(tree, v, tree.insert(cur, 'end', text=k, open='yes'))
     elif type(item) == str:
