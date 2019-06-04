@@ -1,11 +1,23 @@
 import tkinter
 
 
-from interface.common import tkinter_common
+from interface.commands.patients_selector import PatientsSelector
 
 
-class PrescribeTreatment(tkinter.Toplevel):
+class PrescribeTreatment:
     def __init__(self, parent, controller):
-        super().__init__(parent)
-        tkinter_common.default_init(self, parent, controller)
-        tkinter_common.center_window(self)
+        data = (
+            ('Pill', 'str'),
+            ('Amount', 'str'),
+            ('Frequency', 'str')
+        )
+
+        def callback(patient, data):
+            if not 'Diseases' in patient:
+                patient['Diseases'] = [{}]
+            if not 'Treatments' in patient['Diseases'][-1]:
+            	patient['Diseases'][-1]['Treatments'] = []
+            patient['Diseases'][-1]['Treatments'].append(data)
+            controller.update_patient(patient)
+
+        PatientsSelector(parent, controller, data, 'Prescribe treatment', callback)
