@@ -7,7 +7,8 @@ from interface.common.data_form import DataWindow
 
 
 class PatientsSelector(tkinter.Toplevel):
-    def __init__(self, parent, controller, data, action_name, callback, only_present=True):
+    def __init__(self, parent, controller, data, action_name, callback,
+                 only_present=True, show_list=None):
         super().__init__(parent)
         tkinter_common.default_init(self, parent, controller)
 
@@ -15,13 +16,14 @@ class PatientsSelector(tkinter.Toplevel):
         self._callback = callback
         self._action_name = action_name
         self._only_present = only_present
+        self._show_list = show_list
         self._init_list()
 
         tkinter_common.center_window(self)
 
     def _init_list(self):
         lb = tkinter.Listbox(self, selectmode=tkinter.SINGLE)
-        patients = self.controller.get_patients_list()
+        patients = self._show_list if self._show_list else self.controller.get_patients_list()
         for patient in patients:
             if not patient.get('Name'):
                 continue
@@ -58,8 +60,7 @@ class PatientsSelector(tkinter.Toplevel):
                     if patient.get('Name') == name:
                         if self._data:
                             DataWindow(self.parent, self._data, self._action_name, lambda data: self._callback(patient, data))
-                        JsonTreeView(self.parent, patient)
-                        self.destroy()
+                        JsonTreeView(self, patient)
                         return
 
         show_button = tkinter.Button(self, text='Show', command=do_show)

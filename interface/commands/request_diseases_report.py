@@ -1,11 +1,9 @@
 import tkinter
 
 
-from interface.common import tkinter_common
+from interface.commands.patients_selector import PatientsSelector
 
 
-class RequestDiseasesReport(tkinter.Toplevel):
+class RequestDiseasesReport:
     def __init__(self, parent, controller):
-        super().__init__(parent)
-        tkinter_common.default_init(self, parent, controller)
-        tkinter_common.center_window(self)
+        PatientsSelector(parent, controller, None, None, None, only_present=False)
