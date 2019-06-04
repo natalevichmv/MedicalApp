@@ -47,12 +47,12 @@ class RequestDiseaseHistory(tkinter.Toplevel):
                 name = lb.get(sel[0])
                 for patient in patients:
                     if patient.get('Name') == name:
-                        JsonTreeView(self.parent, patient, True)
+                        JsonTreeView(self.parent, patient)
                         self.destroy()
                         return
 
         show_button = tkinter.Button(self, text='Show', command=do_show)
         show_button.grid(row=2, column=0, sticky='news')
 
-        exit_button = tkinter.Button(self, text='Exit', command=self.terminate)
+        exit_button = tkinter.Button(self, text='Exit', command=self.destroy)
         exit_button.grid(row=2, column=1, sticky='news')

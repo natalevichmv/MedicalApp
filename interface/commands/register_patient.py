@@ -18,7 +18,7 @@ class RegisterPatient(tkinter.Toplevel):
                 tkinter.messagebox.showerror('Error', str(e))
             else:
                 tkinter.messagebox.showinfo('Info', 'Patient successfully registered')
-            self.terminate()
+            self.destroy()
 
         data = (
             ('Name', 'str'),

@@ -4,7 +4,10 @@ from common.constants import TITLE
 def add_default_protocols(child, parent):
     def terminate():
         child.destroy()
-        parent.destroy()
+        try:
+            parent.terminate()
+        except:
+            parent.destroy()
     child.terminate = terminate
     child.protocol('WM_DELETE_WINDOW', child.terminate)
 
