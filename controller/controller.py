@@ -11,12 +11,14 @@ class Controller:
         with open('common/logins.db', 'r') as read_file:
             data = read_file.readlines()
             for line in data:
-                user_type, login, password = tuple(line.split(';'))
+                user_type, login, password = (x.strip() for x in line.split(';'))
                 self._passwords[login] = password
                 self._login_to_type[login] = UserType(int(user_type))
 
     def do_login(self, user_name, password):
         if not user_name in self._login_to_type:
+            return False
+        if self._passwords[user_name] != password:
             return False
         user_type = self._login_to_type[user_name]
         self._current_user_name = user_name

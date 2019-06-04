@@ -16,6 +16,7 @@ class LoginWindow(tkinter.Toplevel):
             if not self.controller.do_login(data['User name'], data['Password']):
                 tkinter.messagebox.showerror('Error', 'Invalid user name or password')
                 self.terminate()
+                return
             MainMenu(self.parent, self.controller)
             self.destroy()
 
