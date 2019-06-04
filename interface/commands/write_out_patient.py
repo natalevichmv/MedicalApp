@@ -15,6 +15,7 @@ class WriteOutPatient:
         def callback(patient, data):
             if not 'Diseases' in patient:
                 patient['Diseases'] = [{}]
+            data['Doctor Name'] = controller.get_user_name()
             patient['Diseases'][-1]['Wrote out'] = data
             controller.update_patient(patient)
 
