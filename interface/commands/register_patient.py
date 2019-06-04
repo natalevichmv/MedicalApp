@@ -21,9 +21,7 @@ class RegisterPatient(tkinter.Toplevel):
             self.terminate()
 
         data = (
-            ('First name', 'str'),
-            ('Last name', 'str'),
-            ('Name by father', 'str'),
+            ('Name', 'str'),
             ('Address', 'str'),
             ('Birth date', 'date'),
             ('Other', 'astr')
